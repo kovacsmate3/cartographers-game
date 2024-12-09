@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=IBM+Plex+Serif:wght@500;700&family=Pacifico&family=Pixelify+Sans:wght@600&family=Vollkorn:wght@400;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Vollkorn";
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/terkepesz2.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+#board {
+    background-color: whitesmoke;
+    padding: 8px 18px 6px 18px;
+    border-radius: 10px;
+}
+
+#gameSide {
+    width: max-content;
+    margin-left: 80px;
+}
+
+#gameName {
+    text-align: left;
+    font-size: 3em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#sidePanel {
+    width: max-content;
+    margin-left : 80px;
+}
+
+.cell {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background-image: url('../img/base_tile.png');
+    background-size: cover;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.greenHighlighted-cell {
+    outline: 1.75px solid #1CC201;
+    background-color: #97ED74;
+    background-image: none;
+}
+
+.redHighlighted-cell {
+    outline: 1.75px solid #FF0000;
+    background-color: #F07261;
+    background-image: none;
+}
+
+.water {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background-image: url('../img/water_tile.png');
+    background-size: cover;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.forest {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background-image: url('../img/forest_tile.png');
+    background-size: cover;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.farm {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background-image: url('../img/plains_tile.png');
+    background-size: cover;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.town {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background-image: url('../img/village_tile.png');
+    background-size: cover;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+#sidePanel h1 {
+    font-size: 1.3em;
+}
+
+#seasons {
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#spring, #summer, #autumn, #winter {
+    border: 4px solid black;
+    border-radius: 10px;
+    height: 110px;
+    width: 110px;
+    margin-left: 10px;
+    padding-top: 22px;
+    padding-bottom: 10px;
+    align-items: center;
+    color: whitesmoke;
+}
+
+#spring {
+    border:4px solid #3B8E3E;
+    background-color:#69BE6C;
+}
+
+#summer {
+    border:4px solid #DDBB08;
+    background-color:#F5E070;
+}
+
+#autumn {
+    border:4px solid #6C3F14;
+    background-color:#EABD94;
+}
+
+#winter {
+    border:4px solid #3190A5;
+    background-color:#59D2EC;
+}
+
+#currentSeason, #remainingTimeOfSeason, #currentElement {
+    margin-left: 4px;
+}
+
+#currentSeasonHr {
+    margin: 4px;
+    height: 2px;
+    color: black;
+    background: black;
+    opacity: 1;
+    border: none;
+}
+
+hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 4px;
+    height: 2px;
+    color: black;
+    background: black;
+    opacity: 1;
+    border: none;
+}
+
+#totalPoints {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#A, #B, #C, #D {
+    padding: 0;
+    width: 300px;
+    margin-bottom: -30px;
+}
+
+#A img, #B img, #C img, #D img {
+    margin-left: 15px;
+    width: 300px;
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    padding-right: 0px;
+    align-items: center;
+}
+
+.missionPoint {
+    position: relative;
+    display: inline-block;
+    top: -27px;
+    left: 150px;
+    color: whitesmoke;
+    margin: 0px;
+    font-size: 0.7em;
+}
+
+#missionA, #missionB, #missionC, #missionD {
+    display: inline-block;
+}
+
+.selected {
+    filter: contrast(100%)
+}
+
+.deselected {
+    filter: contrast(30%)
+}
+
+.active {
+    border-radius: 100%;
+    width: 12px;
+    height: 12px;
+    background-color: #D0E578;
+}
+
+.inactive {
+    border-radius: 100%;
+    width: 12px;
+    height: 12px;
+    background-color: #363636;
+}
+
+.missionLetter {
+    font-weight: bold;
+    font-size: 1.6em;
+}
+
+#remainingTimeOfSeason {
+    margin-top: 6px;
+}
+
+.currentElementCell {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background-color: whitesmoke;
+    background-size: cover;
+    box-sizing: border-box;
+    display: inline-block;   
+}
+
+#controlElement {
+    background-color: whitesmoke;
+    height: 210px;
+    width: 210px;
+    padding: 0px 25px 18px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 2.5px rgba(228,228,228);
+    border: 2px solid rgba(228,228,228);
+}
+
+#controlButtons {
+    width: 45%;
+    text-align: right;
+}
+
+#controlButtons h1{
+    padding-right: 15px;
+    text-align: left;
+}
+
+#rotateButton, #mirrorButton {
+    font-size: 1.4em;
+    margin-right: 6px;
+    margin-left: 6px;
+    padding-top: 14px;
+    padding-bottom: 11px;
+    padding-right: 8px;
+    padding-left: 8px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 15px;
+    border: 2px solid rgba(228,228,228); 
+    width: 50%;
+}
+
+#rotateButton:hover, #mirrorButton:hover {
+    box-shadow: 0px 0px 8px 2.5px rgba(228,228,228);
+}
+
+#rotateButton {
+    margin-bottom: 14px;
+    margin-top: 40px;
+}
+
+#timeOfCurrentElement {
+    margin-right: 0px !important;
+    padding-right: 0px;
+    text-align: right;
+}
+
+#timeOfCurrentElement img {
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0px;
+}
+
+#timeOfCurrentElementText {
+    margin: 4px;
+    font-size: 1.6em;
+}
+
+.popUpBackground {
+    font-size: 0.8em;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.popUpContent {
+    width: 700px;
+    height: 550px;
+    background-color: #ffdfa0;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 1.4em;
+    position: relative;
+}
+
+.popUpContent img {
+    width: 20%;
+}
+
+.close {
+    position: absolute;
+    top: -10px;
+    right: 14px;
+    font-size: 2.3em;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+table {
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 0.7em;
+    width: 75%;
+    border-collapse: collapse;
+    border: 2px solid #8C4C00;
+}
+
+#comment {
+    text-align: center;
+    font-size: 0.8em;
+}
+
+td, th {
+    border: 1px solid #8C4C00;
+    text-align: center;
+    padding: 8px;
+    width: 20px;
+    height: 30px;
+}
+
+#th-spring, .td-spring {
+    background-color:#69BE6C;
+}
+
+#th-summer, .td-summer {
+    background-color:#F5E070;
+}
+
+#th-autumn, .td-autumn {
+    background-color:#EABD94;
+}
+
+#th-winter, .td-winter {
+    background-color:#59D2EC;
+}
+
+#totalRow, .total {
+    border: 2px solid black;
+}
+
+#sumOfTotals {
+    color: red;
+    font-weight: bold;
+}
+
+#resetButton {
+    font-size: 1em;
+    background-color: #FFD378;
+    border: 2px solid #8C4C00;
+    border-radius: 15px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#resetButton:hover {
+    background-color: #8C4C00;
+    color: white;
+    border: 3px solid white;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ==== Bootstrap ==== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- ==== Bootstrap+Javascript ==== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <!-- ==== CSS ==== -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <link rel="icon" sizes="192x192" href="./img/android-chrome-192x192.png">
+    <link rel="icon" sizes="512x512" href="./img/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+    <title>A térképész</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Játék vége pop-up-->
+            <div class="popUpBackground">
+                <div class="popUpContent">
+                    <div class="close">+</div>
+                    <img src="./img/topographer.png" alt="Térképész játék logó"> <br>
+                    A játéknak vége!
+                    <span id="result">Elért eredményeid:</span><br>
+                    <table>
+                        <caption id="comment">
+                            Előfordulhat, hogy az utolsó sorban az évszakokhoz tartozó oszlopokban megjelenő értékek 1-gyel, 2-vel, 3-mal vagy 4-gyel eltérnek, mivel sikeresen bekerített hegy esetén +1 pont jár a küldetések pontszámai mellett.
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th>Küldetések</th>
+                                <th id="th-spring">Tavasz</th>
+                                <th id="th-summer">Nyár</th>
+                                <th id="th-autumn">Ősz</th>
+                                <th id="th-winter">Tél</th>
+                                <th class="total">Összesen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A küldetés</td>
+                                <td class="td-spring"></td>
+                                <td></td>
+                                <td></td>
+                                <td class="td-winter"></td>
+                                <td class="total"></td>
+                            </tr>
+                            <tr>
+                                <td>B küldetés</td>
+                                <td class="td-spring"></td>
+                                <td class="td-summer"></td>
+                                <td></td>
+                                <td></td>
+                                <td class="total"></td>
+                            </tr>
+                            <tr>
+                                <td>C küldetés</td>
+                                <td></td>
+                                <td class="td-summer"></td>
+                                <td class="td-autumn"></td>
+                                <td></td>
+                                <td class="total"></td>
+                            </tr>
+                            <tr>
+                                <td>D küldetés</td>
+                                <td></td>
+                                <td></td>
+                                <td class="td-autumn"></td>
+                                <td class="td-winter"></td>
+                                <td class="total"></td>
+                            </tr>
+                            <tr id="totalRow">
+                                <td class="total">Összesen</td>
+                                <td class="total td-spring"></td>
+                                <td class="total td-summer"></td>
+                                <td class="total td-autumn"></td>
+                                <td class="total td-winter"></td>
+                                <td id="sumOfTotals" class="total"></td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                    Szeretnél új játékot kezdeni? <br>
+                    <button id="resetButton">Új játék</button>
+                </div>
+            </div>
+            <div id="gameSide" class="col-6">
+                <h1 id="gameName"><b>Burgonya térkép</b></h1>
+                <div id="board"></div>
+            </div>
+            <div id="sidePanel" class="col-6">
+                <div id="seasons" class="row">
+                    <div id="spring" class="col-3">Tavasz:<br><span id="springPoints"></span> pont</div>
+                    <div id="summer" class="col-3">Nyár:<br><span id="summerPoints"></span> pont</div>
+                    <div id="autumn" class="col-3">Ősz:<br><span id="autumnPoints"></span> pont</div>
+                    <div id="winter" class="col-3">Tél:<br><span id="winterPoints"></span> pont</div>
+                </div>
+                <h1 id="totalPoints"><b>Összesen: <span id="finalResult"></span> pont</b></h1>
+                <h1 id="currentSeason"><b>Jelenlegi évszak: <span id="currentSeasonNameAndMissions"></span></b></h1>
+                <hr id="currentSeasonHr">
+                <div class="row">
+                    <div id="A" class="col-6"></div>
+                    <div id="B" class="col-6"></div>
+                </div>
+                <div class="row">
+                    <div id="C" class="col-6"></div>
+                    <div id="D" class="col-6"></div>
+                </div>
+                <h1 id="remainingTimeOfSeason"><b>Évszakból hátralévő idő: <span id="remainingTimeOfCurrentSeason"></span><span id="outOfSeven">/7</span></b></h1>
+                <hr>
+                <div class="row">
+                    <div id="controlButtons" class="col-6">
+                        <h1 id="currentElement"><b>Lehelyezendő elem: </b></h1>
+                        <button id="rotateButton">Forgatás</button>
+                        <button id="mirrorButton">Tükrözés</button>
+                    </div>
+                    <div id="controlElement" class="col-6">
+                        <div class="row">
+                            <div id="timeOfCurrentElement"><span id="timeOfCurrentElementText"></span><img
+                                    src="./img/2oclock.png" alt="Időegység-jelző"></div>
+                            <div id="currentElementDiv"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==== Javascript ==== -->
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
